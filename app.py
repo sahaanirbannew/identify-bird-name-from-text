@@ -158,7 +158,18 @@ def get_birds_given_text(tweet,all_birds_list, birdnames_words,spelling_correcti
 
 @app.route('/bird') 
 def send_birdname():
+  response = {} 
   tweet = request.args.get('sent')
   bird_list = get_birds_given_text(tweet,all_birds_list, birdnames_words, spelling_corrections)
-  return bird_list
+  response['bird'] = bird_list 
+  return response
+
+if __name__ == '__main__':
+    app.config['JSONIFY_PRETTYPRINT_REGULAR'] = False
+    
+    if ON_HEROKU:
+      port = int(os.environ.get('PORT', 17995))  # as per OP comments default is 17995
+    else:
+      port = 3000
+    app.run(debug=True, port = port)
   
