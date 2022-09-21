@@ -173,6 +173,7 @@ if __name__ == '__main__':
     if ON_HEROKU:
       port = int(os.environ.get('PORT', 17995))  # as per OP comments default is 17995
     else:
-      port = 3000
+      #port = 3000
+      port = 8080
     app.run(debug=True, port = port)
   
