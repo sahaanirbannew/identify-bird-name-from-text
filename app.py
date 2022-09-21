@@ -1,4 +1,3 @@
-import requests
 from flask import Flask, request, render_template
 ON_HEROKU = os.environ.get('ON_HEROKU')
 
