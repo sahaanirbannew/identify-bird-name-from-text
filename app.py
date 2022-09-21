@@ -7,6 +7,8 @@ p.set_options(p.OPT.EMOJI, p.OPT.MENTION, p.OPT.URL, p.OPT.SMILEY, p.OPT.NUMBER,
 from ekphrasis.classes.segmenter import Segmenter
 seg_tw = Segmenter(corpus="english")
 import requests
+from flask import Flask, request, render_template
+ON_HEROKU = os.environ.get('ON_HEROKU')
 
 spelling_corrections = {}
 spelling_corrections["grey"] = "gray" 
@@ -146,3 +148,17 @@ def get_bird_names(tweet, birdnames_words):
           bird_list_.append(bird) 
   
   return bird_list_
+
+def get_birds_given_text(tweet,all_birds_list, birdnames_words,spelling_corrections):
+  tweet = try_removing_hashtags(tweet,all_birds_list, birdnames_words) 
+  tweet = basic_preprocess(tweet, spelling_corrections)  
+  bird_list = get_bird_names(tweet, birdnames_words) 
+  return bird_list 
+
+
+@app.route('/bird') 
+def send_birdname():
+  tweet = request.args.get('sent')
+  bird_list = get_birds_given_text(tweet,all_birds_list, birdnames_words, spelling_corrections)
+  return bird_list
+  
