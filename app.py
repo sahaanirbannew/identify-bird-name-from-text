@@ -19,7 +19,7 @@ spelling_corrections["avedavat"] = "avadavat"
 spelling_corrections["open billed stork"] = "asian openbill" 
 spelling_corrections["secretary bird"] = "Secretarybird" 
 spelling_corrections["dollar bird"] = "dollarbird"
-path = "/" 
+path = "" 
 
 def get_eBird_commonNames_data(path):
   file = open(path+"bird_dict_comName",'rb')
