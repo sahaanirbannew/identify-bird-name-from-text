@@ -155,6 +155,9 @@ def get_birds_given_text(tweet,all_birds_list, birdnames_words,spelling_correcti
   bird_list = get_bird_names(tweet, birdnames_words) 
   return bird_list 
 
+@app.route('/') 
+def hello_world():
+  return "Hello World"
 
 @app.route('/bird') 
 def send_birdname():
